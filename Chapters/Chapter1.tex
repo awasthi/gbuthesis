@@ -1,0 +1,149 @@
+\chapter[Introduction]{Introduction}
+\label{chap:introduction}
+
+Each chapter heading is typeset in this way --- this in an integral
+part of the style, so if you don't like it abdnthesis.cls may not be
+for you. However, do feel free to modify the .cls file to your needs.
+
+\section{Defaults}
+
+\begin{itemize}
+\item oneside --- assuming single sided printing.
+
+\item onecolumn --- \LaTeX\ will give you an error if you try to use
+  the twocolumn option, not that anyone would contemplate this for a
+  thesis.
+
+\item 11pt --- this works best with the text height and width on A4
+  paper.
+
+\item 1.5 line spacing --- looks much better than double spacing.
+
+\item Times Roman font --- for both text and maths with the exception
+  of mathcal, but see below for options.
+\end{itemize}
+
+\section{Options}
+
+\begin{itemize}
+
+\item These are mutually exclusive options that are used to specify
+ the type of degree that the thesis is to be submitted in partial
+ fulfilment of the requirements of:
+
+\begin{itemize}
+\item phd or PhD -- the default.
+\item mphil or MPhil -- for Master of Philosophy Theses.
+\item msc or MSc -- for MSc project reports.
+\item bsc or BSc -- for BSc project reports.
+\end{itemize}
+
+\item Two self-explanatory options for changing the line spacing from
+ the default 1.5.
+
+\begin{itemize}
+\item singlespace
+\item doublespace
+\end{itemize}
+
+\item titlebox --- this option ensures that the title of the document
+ fits within the window on the standard departmental BSc or MSc
+ project report front cover.
+ 
+\item twoside --- this option is if you wish to print your thesis
+  using a double sided printer.  Note that the University regulations 
+  do not permit the submission of theses printed double sided.
+
+\item cmmath --- this action changes the font used in math mode to be
+  Computer Modern. The default is for all math mode fonts to be times
+  with the exception of the mathcal font. If you want to also use
+  times for mathcal, you need to comment out these two lines in the
+  abdnthesis.cls file:
+\begin{verbatim}
+        \SetMathAlphabet{\mathcal}{normal}{OMS}{cmsy}{m}{n}
+        \SetMathAlphabet{\mathcal}{bold}{OMS}{cmsy}{b}{n}
+\end{verbatim}
+
+\item cmall --- if you want to go with Computer Modern for both
+  text and maths, use this option.
+
+
+\end{itemize}
+
+There is also an \emph{optional} command for including prior
+qualifications within the title page; some like to do this. Prior to
+version 2.3 (2013/08/11) \LaTeX\ would give an error if this was not
+declared, even if you didn't want this information on the title
+page. This meant that you would have to have made the declaration
+\verb+\qualifications{}+, which was an ugly solution. Now, ``empty''
+declaration can simply be omitted.
+
+%\chapter{Problem Statement}
+\chapter{Frequently asked questions\label{chap:faq}}
+
+In addition to the information provided in
+chapter~\ref{chap:introduction}, here are some brief notes on
+references (see section~\ref{sec:references}) and figures (see
+section~\ref{sec:figures}).
+
+\section{References\label{sec:references}}
+
+You can, of course, use any referencing style you like such as
+\verb+plain+.  The \verb+natbib+ package, however, allows you to do
+this with named style citations:
+
+\begin{tabbing}
+\hspace{3in} \= \kill
+\verb-\citet{key}- \> Jones et al. (1990) \\
+\verb-\citet*{key}- \> Jones, Baker, and Smith (1990) \\
+\verb-\citep{key}- \> (Jones et al., 1990) \\
+\verb-\citep*{key}- \> (Jones, Baker, and Smith, 1990) \\
+\verb-\citep[chap. 2]{key}- \> (Jones et al., 1990, chap. 2) \\
+\verb-\citep[e.g.][]{key}- \> (e.g. Jones et al., 1990) \\
+\verb-\citep[e.g.][p. 32]{key}- \> (e.g. Jones et al., p. 32) \\
+\verb-\citeauthor{key}- \> Jones et al. \\
+\verb-\citeauthor*{key}- \> Jones, Baker, and Smith \\
+\verb-\citeyear{key}- \> 1990 \\
+\end{tabbing}
+
+\section{Figures\label{sec:figures}}
+
+To include an encapsulated postscript or PDF file (depending on whether you're using \LaTeX or PDF\LaTeX) as a figure, do
+something like the following.  Note, to ensure correct
+cross-referencing, it is best to include the figure label within
+the caption definition.  \emph{Note that the graphicx package 
+is already loaded and used to include the
+University crest on the title page.}
+
+\begin{verbatim}
+\begin{figure}
+ \begin{center}
+   \includegraphics{myfigure.pdf}    
+   \caption{This is my figure.\label{fig:mylabel}}
+ \end{center}
+\end{figure}
+\end{verbatim}
+
+\section{Frequently used symbols\label{sec:fus}}
+
+In \LaTeX\ documents where you want to use a modality or some text consistently in normal text and in equation environments it is often difficult to remember to typeset the text consistently or time-consuming to keep typing in the environment. It may be a good idea to define something like the following in the preamble (i.e.\ before \verb+\begin{document}+):
+
+\begin{verbatim}
+\def\sfthing#1#2{\def#1{\mbox{{\small\normalfont\sffamily #2}}}}
+
+\sfthing{\PP}{P}
+\sfthing{\FF}{F}
+\end{verbatim}
+
+Then use it in text or math mode. In all cases it looks the same; e.g.\\
+\verb+\PP\ refers to something, and other things are \FF; $\Phi = \PP\cup\FF$+\\
+is typeset as:
+
+%\PP\ refers to something, and other things are \FF; i.e.\ $\Phi = \PP\cup\FF$
+
+Note that you need to put ``\textbackslash'' after the command if you want a normal space after it.
+%\chapter{Research}
+
+%\chapter{Models}
+
+%\chapter{Results and Discussion}
